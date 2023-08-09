@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int base, altura, area;
+    cout<<"Ingresar la base del rectángulo: ";
+    cin>>base;
+    
+    cout<<"Ingresar la altura del rectángulo: ";
+    cin>>altura;
+    
+    area=base*altura;
+    cout<<"El area del rectángulo es: "<<area;
+
+    return 0;
+}
