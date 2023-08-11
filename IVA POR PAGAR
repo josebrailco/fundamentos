@@ -1,0 +1,19 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    float salario, iva;
+    cout<<"Ingrese el monto de su salario: ";
+    cin>>salario;
+    
+    if (salario>=4280)
+    { iva=salario*0.13;
+    cout<<"El IVA que debe pagar es: "<<iva;
+    }
+    else 
+    { cout<<"Usted no debe pagar el IVA";
+    }
+    return 0;
+}
