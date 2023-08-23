@@ -1,0 +1,41 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+    float a,b,c,d,xR,xi,x,x1,x2;
+    cout<<"Ingrese el valor de x^2: ";
+    cin>>a;
+    if (a==0)
+        cout<<"No tiene solucion"<<endl;
+    else
+        cout<<"Ingrese el valor de x: ";
+        cin>>b;
+        cout<<"Ingrese el termino independiente: ";
+        cin>>c;
+        d=b*b-(4*a*c);
+        if(d<0)
+        {
+            xR= -b/(2*a);
+            xi= sqrt(-d)/(2*a);
+            cout<<"La solucion imaginaria 1= "<<xR<<"+"<<xi<<"i"<<endl;
+            cout<<"La solucion imaginaria 2= "<<xR<<"-"<<xi<<"i"<<endl;
+        }
+        else
+            if(d==0)
+            {
+                x=-b/(2*a);
+                cout<<"La solucion unica es: "<<x;
+            }
+            else
+            {
+                x1=(-b+sqrt(d))/(2*a);
+                x2=(-b-sqrt(d))/(2*a);
+                cout<<"Solucion real 1: "<<x1<<endl;
+                cout<<"Solucion real 2: "<<x2;
+            }
+    
+    return 0;
+}
