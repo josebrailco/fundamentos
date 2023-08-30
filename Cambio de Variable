@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int A,B,AUX;
+    cout<<"Ingrese la primer variable: ";
+    cin>>A;
+    cout<<"Ingrese la segunda variable: ";
+    cin>>B; 
+    
+    AUX=A;
+    A=B;
+    B=AUX;
+    
+    cout<<"La primer variable es: "<<A<<endl;
+    cout<<"La segunda variable es: "<<B<<endl;
+    
+
+    return 0;
+}
