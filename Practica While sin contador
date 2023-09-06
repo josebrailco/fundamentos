@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n1,n2;
+    string decision="si";
+    
+    while(decision=="si" || decision=="Si"|| decision=="SI")
+    { 
+    cout<<"Ingrese el primer numero: "<<endl;
+    cin>>n1;
+    cout<<"Multiplicandolo por 3 resulta: "<<n1*3<<endl;
+    
+    cout<<"Ingrese el segundo numero: "<<endl;
+    cin>>n2;
+    cout<<"Dividiendolo entre 2 resulta: "<<n2/2<<endl;
+    
+    cout<<"¿Desea continuar? (Si/No)"<<endl;
+    cin>>decision;
+    }
+    
+    cout<<"El programa ha finalizado.";
+    
+    return 0;
+}
