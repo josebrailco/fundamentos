@@ -1,0 +1,26 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int numero,c;
+    float prom;
+    c=1;
+    
+    cout<<"Ingrese un numero: "<<endl;
+    cin>>numero;
+    prom=numero;
+    while(numero>100)
+    {    cout<<"Ingrese otro numero: "<<endl;
+        cin>>numero;
+        
+        c++;
+        prom=numero+prom;
+    }
+    
+    prom=prom/c;
+    cout<<"El promedio de los numeros ingresados es: "<<prom<<endl;
+    
+    return 0;
+}
