@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int cantidad,valor,item;
+    float precio=0;
+    string continuar="si";
+    
+    while(continuar=="si"||continuar=="Si"||continuar=="sí"||continuar=="Sí"||continuar=="SI")
+    {
+    cout<<"MENU"<<endl;
+    cout<<"1. Hamburguesas 3bs"<<endl;
+    cout<<"2. Hamburguesa con queso 5 "<<endl; 
+    cout<<"3. Papas fritas 2bs"<<endl;
+    cout<<"4. Soda 2bs"<<endl;
+    cout<<"¿Qué item desea pedir? (1-4)"<<endl;
+    cin>>item;
+    
+    switch (item)
+    {   case 1:valor=3;break;
+        case 2:valor=5;break;
+        case 3:valor=2;break;
+        case 4:valor =2;break;
+        default: cout<<"Opcion no valida."<<endl;
+    }
+    cout<<"Cuantas unidades desea pedir?: ";
+    cin>>cantidad;
+    precio=precio+(valor*cantidad);
+    cout<<"¿Desea continuar ordenando?: ";
+    cin>>continuar;
+    }
+    cout<<"El precio final de su compra es: "<<precio<<" bs";
+
+    return 0;
+}
