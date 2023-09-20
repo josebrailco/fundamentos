@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int i, n, signo=1, f=1;
+    float x, acum=0;
+    do {
+        cout << "Ingrese el numero de elementos: ";
+        cin >> n;
+        if (n <= 0)
+            cout << "Ingrese un numero mayor a 0." << endl;
+    } while (n <= 0);
+    do {
+        cout << "Ingrese el valor de la serie X: ";
+        cin >> x;
+        if (x <= 0)
+            cout << "Ingrese un numero mayor a 0." << endl;
+    } while (x <= 0);
+
+    for (i=1; i<=n; i++)
+    { 
+        f = f * i;
+        acum = acum + signo*pow(x, i) / f;
+        signo = -signo;
+    }
+
+    cout << "El resultado es " << acum;
+
+    return 0; 
+}
