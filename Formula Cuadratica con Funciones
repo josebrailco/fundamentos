@@ -1,0 +1,57 @@
+#include <iostream>
+
+using namespace std;
+
+float unica (float a, float b);
+void reales(float a, float b, float c, float &x1, float &x2);
+void imaginarios(float a, float b, float c, float& xR, float& xi);
+
+int main()
+{
+    float a, b, c, d, xR, xi, x, x1, x2;
+    cout << "Ingrese el valor de x^2: ";
+    cin >> a;
+    if (a == 0)
+        cout << "No tiene solucion" << endl;
+    else
+        cout << "Ingrese el valor de x: ";
+    cin >> b;
+    cout << "Ingrese el termino independiente: ";
+    cin >> c;
+    d = b * b - (4 * a * c);
+    if (d == 0)
+        cout << "La solucion unica es: " << unica(b,a);
+    else
+        if (d > 0)
+    {
+        reales(a, b, c, x1, x2);
+        cout << "x1=" << x1<<endl;
+        cout << "x2=" << x2<<endl;
+    }
+    else
+    {
+        imaginarios(a, b, c, xR, xi);
+        cout << "x1=" << xR << "+" << xi << "i"<<endl;
+        cout << "x2=" << xR << "-" << xi << "i"<<endl;
+    }
+    return 0;
+}
+
+float unica(float a, float b)
+{
+    float aux;
+    aux = -b / (2 * a);
+    return aux;
+}
+
+void reales(float a, float b, float c, float& x1, float& x2)
+{
+    x1 = -b + sqrt(pow(b, 2) - 4 * a * c) / (2 * a);
+    x2 = -b - sqrt(pow(b, 2) - 4 * a * c) / (2 * a);
+}
+
+void imaginarios(float a, float b, float c, float& xR, float& xi)
+{
+    xR = -b / (2 * a);
+    xi = -(sqrt(b * b - 4 * a * c)) / (2 * a);
+}
