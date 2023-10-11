@@ -1,9 +1,10 @@
 #include <iostream>
+#include "math.h"
 
 using namespace std;
 
 float unica (float a, float b);
-void reales(float a, float b, float c, float &x1, float &x2);
+void reales(float a, float b, float c, float& x1, float& x2);
 void imaginarios(float a, float b, float c, float& xR, float& xi);
 
 int main()
@@ -20,19 +21,19 @@ int main()
     cin >> c;
     d = b * b - (4 * a * c);
     if (d == 0)
-        cout << "La solucion unica es: " << unica(b,a);
+        cout << "La solucion unica es: " << unica(a,b);
     else
         if (d > 0)
     {
         reales(a, b, c, x1, x2);
-        cout << "x1=" << x1<<endl;
-        cout << "x2=" << x2<<endl;
+        cout << "x1= " << x1<<endl;
+        cout << "x2= " << x2<<endl;
     }
     else
     {
         imaginarios(a, b, c, xR, xi);
-        cout << "x1=" << xR << "+" << xi << "i"<<endl;
-        cout << "x2=" << xR << "-" << xi << "i"<<endl;
+        cout << "x1= " << xR << " + " << xi << "i"<<endl;
+        cout << "x2= " << xR << " - " << xi << "i"<<endl;
     }
     return 0;
 }
@@ -46,12 +47,12 @@ float unica(float a, float b)
 
 void reales(float a, float b, float c, float& x1, float& x2)
 {
-    x1 = -b + sqrt(pow(b, 2) - 4 * a * c) / (2 * a);
-    x2 = -b - sqrt(pow(b, 2) - 4 * a * c) / (2 * a);
+    x1 = (-b + sqrt(pow(b, 2) - 4*a*c)) / (2 * a);
+    x2 = (-b - sqrt(pow(b, 2) - 4*a*c)) / (2 * a);
 }
 
 void imaginarios(float a, float b, float c, float& xR, float& xi)
 {
     xR = -b / (2 * a);
-    xi = -(sqrt(b * b - 4 * a * c)) / (2 * a);
+    xi = (sqrt(-(pow(b, 2) - 4*a*c))) / (2 * a);
 }
