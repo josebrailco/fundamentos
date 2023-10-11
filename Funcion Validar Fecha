@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+void Validacion (int dia, int mes, int a, string &val);
+
+int main()
+{
+    int d,m,a;
+    string val="valida";
+    cout<<"Ingrese el dia: ";
+    cin>>d;
+    cout<<"Ingrese el mes: ";
+    cin>>m;   
+    cout<<"Ingrese el año: ";
+    cin>>a;
+    Validacion(d,m,a,val);
+    cout<<"La fecha es "<<val;
+    
+    return 0;
+}
+
+void Validacion (int dia, int mes, int a, string &val)
+{
+    int bi=a%4;
+       
+    if (mes>12 || (dia>30 && (mes==4 || mes==6 || mes==9 || mes==11)) || (dia>29 && mes==2 && bi==0) || (dia>28 && mes==2 && bi!=0)
+    || (dia>31 && (mes==1|| mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12)) || dia<0 || a<0 || mes<0)
+    {
+        val="invalida";
+    }
+}
