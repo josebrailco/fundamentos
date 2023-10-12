@@ -1,0 +1,28 @@
+#include <iostream>
+
+using namespace std;
+
+int POTEN (int x, int y);
+
+int main ()
+{
+    int x,y;
+    cout<<"Calculadora de potencias: x^y"<<endl;
+    cout<<"x: ";
+    cin>>x;
+    cout<<"y: ";
+    cin>>y;
+    cout<<"El resultado de "<<x<<"^"<<y<<" es: "<<POTEN (x,y);
+}
+
+int POTEN (int x, int y)
+{
+    int i, acum=1;
+
+    for (i=1; i<=y; i++)
+    {
+        acum=acum*x;
+        
+    }
+    return acum;
+}
