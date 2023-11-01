@@ -1,0 +1,137 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#define max_productos  100
+string nombres[max_productos];
+double precios[max_productos];
+int cantidadesstock[max_productos];
+int totalproductos = 0;
+
+void agregarproducto();
+void actualizarstock();
+void buscarproducto();
+void mostrarinventario();
+double calcularvalortotal();
+
+int main() {
+    int opcion;
+
+    do {
+        cout << "Menu de opciones:" << endl;
+        cout << "1. Agregar producto" << endl;
+        cout << "2. Actualizar cantidad en stock" << endl;
+        cout << "3. Buscar producto" << endl;
+        cout << "4. Mostrar inventario" << endl;
+        cout << "5. Calcular valor total del inventario" << endl;
+        cout << "0. Salir" << endl;
+        cout << "Seleccione una opción: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                agregarproducto();
+                break;
+            case 2:
+                actualizarstock();
+                break;
+            case 3:
+                buscarproducto();
+                break;
+            case 4:
+                mostrarinventario();
+                break;
+            case 5:
+                cout << "Valor total del inventario: $" << calcularvalortotal() << endl;
+                break;
+            case 0:
+                cout << "Saliendo del programa." << endl;
+                break;
+            default:
+                cout << "Opción no válida. Intente de nuevo." << endl;
+                break;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
+
+void agregarproducto() {
+    if (totalproductos < max_productos) {
+        string nombre;
+        double precio;
+        int cantidadstock;
+
+        cout << "Nombre del producto: ";
+        cin >> nombre;
+        cout << "Precio del producto: ";
+        cin >> precio;
+        cout << "Cantidad en stock: ";
+        cin >> cantidadstock;
+
+        nombres[totalproductos] = nombre;
+        precios[totalproductos] = precio;
+        cantidadesstock[totalproductos] = cantidadstock;
+
+        totalproductos++;
+
+        cout << "Producto agregado al inventario." << endl;
+    } else {
+        cout << "El inventario está lleno." << endl;
+    }
+}
+
+void actualizarstock() {
+    string nombre;
+    int nuevacantidadstock;
+
+    cout << "Nombre del producto a actualizar: ";
+    cin >> nombre;
+
+    for (int i = 0; i < totalproductos; i++) {
+        if (nombres[i] == nombre) {
+            cout << "Cantidad en stock actual: " << cantidadesstock[i] << endl;
+            cout << "Nueva cantidad en stock: ";
+            cin >> nuevacantidadstock;
+
+            cantidadesstock[i] = nuevacantidadstock;
+
+            cout << "Stock actualizado." << endl;
+            break;
+        }
+    }
+}
+
+void buscarproducto() {
+    string nombre;
+    cout << "Nombre del producto a buscar: ";
+    cin >> nombre;
+
+    for (int i = 0; i < totalproductos; i++) {
+        if (nombres[i] == nombre) {
+            cout << "Nombre: " << nombres[i] << endl;
+            cout << "Precio: " << precios[i] << endl;
+            cout << "Cantidad en stock: " << cantidadesstock[i] << endl;
+            break;
+        }
+    }
+}
+
+void mostrarinventario() {
+    cout << "Inventario de la tienda:" << endl;
+
+    for (int i = 0; i < totalproductos; i++) {
+        cout << "Nombre: " << nombres[i] << " | Precio: " << precios[i] << " | Cantidad en stock: " << cantidadesstock[i] << endl;
+    }
+}
+
+double calcularvalortotal() {
+    double valortotal = 0.0;
+
+    for (int i = 0; i < totalproductos; i++) {
+        valortotal += precios[i] * cantidadesstock[i];
+    }
+
+    return valortotal;
+}
