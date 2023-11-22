@@ -1,0 +1,189 @@
+#include <iostream>
+#include <string>
+#include <conio.h>
+
+#define MAX 100
+
+using namespace std;
+
+void contabilizarusuario(string usuario[], string tipousuario[], string tipousuario1[], int& totalusuarios, int& usuarioscorriente, int& usuariospremium);
+void registrargasto(string gastolit[], string gasto[], float gastofl[], int& totalgastos, float& gastostotales);
+void listargastos(string gastolit[], string gasto[], float gastofl[], int& totalgastos, float& gastostotales);
+void mostrarganancia(string usuario[], string tipousuario[], string tipousuario1[], string gasto[], int totalusuarios, float gastostotales);
+void contabilidad();
+float stringtofloat(string valor);
+int stringtoint(string valor1);
+
+int main() 
+{
+    system("color 3F");
+    contabilidad();
+    return 0;
+}
+
+void contabilidad() 
+{
+    int totalusuarios = 0, usuariospremium = 0, usuarioscorriente = 0, totalgastos = 0;
+    float gastostotales = 0, gastofl[MAX];
+    string usuario[MAX], tipousuario[MAX], tipousuario1[MAX], gasto[MAX], gastolit[MAX], valor[MAX], valor1[MAX];
+    int op;
+
+    do {
+        cout << "\t MENU \t " << endl;
+        cout << " 1. Contabilizar Usuario" << endl;
+        cout << " 2. Registrar Gastos" << endl;
+        cout << " 3. Listar Gastos" << endl;
+        cout << " 4. Mostrar ganancias" << endl;
+        cout << " 0. Salir. " << endl;
+
+        do {
+            cout << " Teclee el numero de la funcion que desea utilizar: ";
+            cin >> op;
+            if (op > 4 || op < 0)
+            {
+                cout << " Ingrese una opcion valida por favor." << endl;
+            }
+        } while (op > 4 || op < 0);
+        switch (op)
+        {
+        case 1:contabilizarusuario(usuario, tipousuario, tipousuario1, totalusuarios, usuarioscorriente, usuariospremium); break;
+        case 2:registrargasto(gastolit, gasto, gastofl, totalgastos, gastostotales); break;
+        case 3:listargastos(gastolit, gasto, gastofl, totalgastos, gastostotales); break;
+        case 4:mostrarganancia(usuario, tipousuario, tipousuario1, gasto, totalusuarios, gastostotales); break;
+        case 0: cout << " Programa Finalizado." << endl; break;
+        default: cout << " Por favor seleccione una opcion valida." << endl;
+        }
+    } while (op != 0);
+    return;
+}
+
+void contabilizarusuario(string usuario[], string tipousuario[], string tipousuario1[], int& totalusuarios, int& usuarioscorriente, int& usuariospremium)
+{
+    string tipous;
+    int usuarioint, tipousint;
+    cin.ignore();
+    do {
+        cout << "Ingrese el numero de usuario: " << endl;
+        getline (cin,usuario[totalusuarios]);
+        usuarioint = stringtoint(usuario[totalusuarios]);
+        if (usuarioint <= 0)
+        {
+            cout << "El numero de usuario debe ser mayor que 0. Ingrese un numero de usuario valido por favor." << endl;
+        }
+    } while (usuarioint <= 0);
+
+    do {
+        cout << "Ingresar el numero del tipo de usuario: " << endl;
+        cout << "1.- Usuario Premium." << endl;
+        cout << "2.- Usuario Corriente." << endl;
+        getline (cin,tipous);
+        tipousint = stringtoint(tipous);
+        if (tipousint == 1)
+        {
+            tipousuario[usuariospremium] = "Usuario Premium";
+            usuariospremium++;
+            totalusuarios++;
+            cout << "Usuario registrado exitosamente." << endl;
+        }
+        if (tipousint == 2)
+        {
+            tipousuario1[usuarioscorriente] = "Usuario Corriente";
+            usuarioscorriente++;
+            totalusuarios++;
+            cout << "Usuario registrado exitosamente." << endl;
+        }
+        if (tipousint != 1 && tipousint != 2)
+        {
+            cout << "Seleccione una opcion valida por favor." << endl;
+        }
+    } while (tipousint != 1 && tipousint != 2);
+}
+
+void registrargasto(string gastolit[], string gasto[], float gastofl[], int& totalgastos, float& gastostotales)
+{
+    string numgastos;
+    int numgastosint;
+    cin.ignore();
+    do {
+        cout << "Ingrese cuantos gastos quiere registrar: ";
+        getline (cin,numgastos);
+        numgastosint = stringtoint(numgastos);
+        if (numgastosint <= 0)
+        {
+            cout << "Ingrese un numero de gastos valido por favor, debe ser un numero entero." << endl;
+        }
+    } while (numgastosint <= 0);
+
+    for (int i = 0; i < numgastosint; i++)
+    {
+        cout << "Ingrese el tipo de gasto: " << endl;
+        getline(cin, gastolit[i]);
+        do {
+            cout << "Ingrese el monto del gasto: " << endl;
+            getline(cin,gasto[i]);
+            gastofl[i] = stringtofloat(gasto[i]);
+            if (gastofl[i] < 0)
+            {
+                cout << "El monto del gasto debe ser mayor a 0." << endl;
+            }
+        } while (gastofl[i] < 0);
+        gastostotales = gastostotales + gastofl[i];
+    }
+    cout << "Gasto registrado exitosamente." << endl;
+    totalgastos = totalgastos + numgastosint;
+}
+
+void listargastos(string gastolit[], string gasto[], float gastofl[], int& totalgastos, float& gastostotales)
+{
+    cout << "Lista de gastos registrados:" << endl;
+
+    for (int i = 0; i < totalgastos; i++) {
+        cout << "Gasto en: " << gastolit[i] << " | Monto: Bs. " << gastofl[i] << endl;
+    }
+    cout << "Los gatos totales son: Bs. " << gastostotales << endl;
+}
+
+void mostrarganancia(string usuario[], string tipousuario[], string tipousuario1[], string gasto[], int totalusuarios, float gastostotales)
+{
+    float gananciaTotal = 0;
+    // Calcular ganancias basadas en usuarios
+    for (int i = 0; i < totalusuarios; i++)
+    {
+        if (tipousuario[i] == "Usuario Premium")
+        {
+            gananciaTotal += 20; // 20 bs por usuario premium
+        }
+        if (tipousuario1[i] == "Usuario Corriente")
+        {
+            gananciaTotal += 2; // 2 bs por usuario corriente
+        }
+    }
+    // Restar gastos
+    gananciaTotal = gananciaTotal - gastostotales;
+    
+    cout << "Ganancia total: Bs. " << gananciaTotal << endl;
+}
+
+float stringtofloat(string valor)
+{
+    float number;
+    try {
+        number = stof(valor);
+    }
+    catch (invalid_argument& e) {
+        return -100000.25;
+    }
+    return number;
+}
+
+int stringtoint(string valor1)
+{
+    float number1;
+    try {
+        number1 = stoi(valor1);
+    }
+    catch (invalid_argument& e) {
+        return -100000.25;
+    }
+    return number1;
+}
