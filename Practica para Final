@@ -1,0 +1,96 @@
+#include <iostream>
+#include <string>
+#define MAX 100
+
+using namespace std;
+
+struct student {
+    string nombre;
+    int mensualidad;
+};
+
+void registrarestudiante(int& n, student estudiante[]);
+void registrarmensualidad(int n, student estudiante[]);
+void verdeudores(int n, student estudiante[]);
+
+int main()
+{
+    int n = 0, opcion;
+    student estudiante[MAX];
+    do {
+        cout << "MENU DE OPCIONES: " << endl;
+        cout << "1.- Registrar Estudiante." << endl;
+        cout << "2.- Registrar pago de Mensualidad." << endl;
+        cout << "3.- Ver lista de deudores." << endl;
+        cout << "0.- Salir" << endl;
+
+        do {
+            cout << "Teclee el numero de la opcion que desea utilizar: ";
+            cin >> opcion;
+            if (opcion < 0 || opcion>3)
+            {
+                cout << "Ingrese una opcion valida por favor." << endl;
+            }
+        } while (opcion < 0 || opcion>3);
+
+        switch (opcion)
+        {
+        case 1:registrarestudiante(n, estudiante); break;
+        case 2:registrarmensualidad(n, estudiante); break;
+        case 3:verdeudores(n, estudiante); break;
+        case 0:cout << "Programa finalizado." << endl;
+        }
+    } while (opcion != 0);
+    return 0;
+}
+
+void registrarestudiante(int& n, student estudiante[])
+{
+    int cant;
+    do {
+        cout << "Ingrese la cantidad de estudiantes que desea registrar: " << endl;
+        cin >> cant;
+        if (cant <= 0)
+        {
+            cout << "Por favor ingrese un numero mayor a 0." << endl;
+        }
+    } while (cant <= 0);
+    cin.ignore();
+    for (int i = 0; i < cant; i++)
+    {
+        cout << "Ingrese el nombre del estudiante: " << endl;
+        getline(cin, estudiante[n].nombre);
+        cout << "Estudiante registrado exitosamente." << endl;
+        n++;
+    }
+}
+
+void registrarmensualidad(int n, student estudiante[])
+{
+    string resp;
+    cout << "Ingrese el nombre del estudiante del que desea registrar el pago: " << endl;
+    cin.ignore();
+    getline(cin, resp);
+    for (int i = 0; i < n; i++)
+    {
+        if (resp == estudiante[i].nombre)
+        {
+            estudiante[i].mensualidad = 1;
+            cout << "Pago registrado exitosamente." << endl;
+            return;
+        }
+    }
+    cout << "No se encontro al estudiante con el nombre ingresado." << endl;
+}
+
+void verdeudores(int n, student estudiante[])
+{
+    cout<<" \t\Lista de deudores\t\ "<<endl;
+    for (int i = 0; i < n; i++)
+    {
+        if (estudiante[i].mensualidad != 1)
+        {
+            cout << estudiante[i].nombre << endl;
+        }
+    }
+}
